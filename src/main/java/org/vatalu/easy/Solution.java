@@ -37,7 +37,7 @@ public class Solution {
             if(j==ss.length()) {
                 if(ss.length()>longestString.length()) {
                     longestString=ss;
-                } else if(ss.length()==longestString.length()&&ss.compareTo(longestString)==-1) {
+                } else if(ss.length()==longestString.length()&&ss.compareTo(longestString)<0) {
                     longestString=ss;
                 }
             }
