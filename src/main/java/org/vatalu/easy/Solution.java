@@ -169,7 +169,29 @@ public class Solution {
     public static int singleNumber(int[] nums) {
         int ret = 0;
         for (int n : nums) {
-            ret=ret^n;
+            ret = ret ^ n;
+        }
+        return ret;
+    }
+
+    //268
+    public static int missingNumber(int[] nums) {
+        int ret = 0;
+        for (int i = 0; i < nums.length; i++) {
+            ret = ret ^ i ^ nums[i];
+        }
+        return ret ^ nums.length;
+    }
+
+    //260
+    public static int[] singleNumber3(int[] nums) {
+        int diff = 0;
+        for (int num : nums) diff ^= num;
+        diff &= -diff;  // 得到最右一位
+        int[] ret = new int[2];
+        for (int num : nums) {
+            if ((num & diff) == 0) ret[0] ^= num;
+            else ret[1] ^= num;
         }
         return ret;
     }

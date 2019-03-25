@@ -67,4 +67,10 @@ public class TestSolution {
         int[] nums={1,2,2};
         Assert.assertEquals(1,Solution.singleNumber(nums));
     }
+
+    @Test
+    public void testMissingNumber(){
+        int[] nums={0,1,2,4};
+        Assert.assertEquals(3,Solution.missingNumber(nums));
+    }
 }
