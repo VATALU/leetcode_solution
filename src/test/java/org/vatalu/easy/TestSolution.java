@@ -28,4 +28,30 @@ public class TestSolution {
         int k = 2;
         Assert.assertEquals(5, Solution.findKthLargest(input, k));
     }
+
+    @Test
+    public void testMergeSortedArray() {
+        int[] nums1 = {1,2,3,0,0,0};
+        int[] nums2 = {2,5,6};
+        int[] answer = {1,2,2,3,5,6};
+        Assert.assertArrayEquals(answer,Solution.mergeSortedArray(nums1,3,nums2,3));
+    }
+
+    @Test
+    public void testFindDuplicate(){
+        int nums[] = {1,2,3,4,1};
+        Assert.assertEquals(1,Solution.findDuplicate(nums));
+    }
+
+    @Test
+    public void testFirstMissingPositive(){
+        int nums[]={1,2,0};
+        Assert.assertEquals(3,Solution.firstMissingPositive(nums));
+    }
+
+    @Test
+    public void testMySqrt(){
+        int x=4;
+        Assert.assertEquals(2,Solution.mySqrt(x));
+    }
 }

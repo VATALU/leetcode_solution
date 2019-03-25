@@ -1,7 +1,6 @@
 package org.vatalu.easy;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class Solution {
@@ -81,5 +80,74 @@ public class Solution {
         int t = a[i];
         a[i] = a[j];
         a[j] = t;
+    }
+
+    // 88
+    public static int[] mergeSortedArray(int[] nums1, int m, int[] nums2, int n) {
+        int index1 = m - 1, index2 = n - 1;
+        int indexMerge = m + n - 1;
+        while (index1 >= 0 || index2 >= 0) {
+            if (index1 < 0) {
+                nums1[indexMerge--] = nums2[index2--];
+            } else if (index2 < 0) {
+                nums1[indexMerge--] = nums1[index1--];
+            } else if (nums1[index1] < nums2[index2]) {
+                nums1[indexMerge--] = nums2[index2--];
+            } else if (nums1[index1] >= nums2[index2]) {
+                nums1[indexMerge--] = nums1[index1--];
+            }
+        }
+        return nums1;
+    }
+
+    //141
+    public boolean hasCycle(ListNode head) {
+        Set<ListNode> nodes = new HashSet<>();
+        while (head != null) {
+            if (nodes.contains(head)) {
+                return true;
+            }
+            nodes.add(head);
+            head = head.next;
+        }
+        return false;
+    }
+
+    //287
+    public static int findDuplicate(int[] nums) {
+        Set<Integer> integers = new HashSet<>();
+        for (int i : nums) {
+            if (integers.contains(i)) {
+                return i;
+            }
+            integers.add(i);
+        }
+        return -1;
+    }
+
+    //41
+    public static int firstMissingPositive(int[] nums) {
+        Arrays.sort(nums);
+        int j = 0;
+        boolean isFind = false;
+        for (int i = 1; i < Integer.MAX_VALUE; i++) {
+            for (; j < nums.length; j++) {
+                if (nums[j] == i) {
+                    j++;
+                    isFind = true;
+                    break;
+                }
+            }
+            if (isFind == false && j >= nums.length) {
+                return i;
+            }
+            isFind=false;
+        }
+        return -1;
+    }
+
+    // 69
+    public static int mySqrt(int x) {
+        return new Double(Math.sqrt(x)).intValue();
     }
 }
