@@ -54,4 +54,17 @@ public class TestSolution {
         int x=4;
         Assert.assertEquals(2,Solution.mySqrt(x));
     }
+
+    @Test
+    public void testNextGreatestLetter() {
+        char[] letters = {'c','f','j'};
+        char target='z';
+        Assert.assertEquals('c',Solution.nextGreatestLetter(letters,target));
+    }
+
+    @Test
+    public void testSingleNumber() {
+        int[] nums={1,2,2};
+        Assert.assertEquals(1,Solution.singleNumber(nums));
+    }
 }

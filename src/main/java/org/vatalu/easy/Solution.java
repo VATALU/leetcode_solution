@@ -141,7 +141,7 @@ public class Solution {
             if (isFind == false && j >= nums.length) {
                 return i;
             }
-            isFind=false;
+            isFind = false;
         }
         return -1;
     }
@@ -149,5 +149,28 @@ public class Solution {
     // 69
     public static int mySqrt(int x) {
         return new Double(Math.sqrt(x)).intValue();
+    }
+
+    //744
+    public static char nextGreatestLetter(char[] letters, char target) {
+        int l = 0, h = letters.length - 1;
+        while (l <= h) {
+            int m = l + (h - l) / 2;
+            if (letters[m] <= target) {
+                l = m + 1;
+            } else {
+                h = m - 1;
+            }
+        }
+        return l < letters.length ? letters[l] : letters[0];
+    }
+
+    //136
+    public static int singleNumber(int[] nums) {
+        int ret = 0;
+        for (int n : nums) {
+            ret=ret^n;
+        }
+        return ret;
     }
 }
