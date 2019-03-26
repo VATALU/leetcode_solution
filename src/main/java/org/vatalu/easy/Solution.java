@@ -241,4 +241,38 @@ public class Solution {
         }
         return count;
     }
+
+    //406
+    public static int[][] reconstructQueue(int[][] people) {
+        Arrays.sort(people, (a, b) -> (a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]));
+        for (int i = 0; i < people.length; i++) {
+            if (people[i][1] < i) {
+                int[] temp = people[i];
+                int n = people[i][1];
+                for (int j = i; j > n; j--) {
+                    people[j] = people[j - 1];
+                }
+                people[n] = temp;
+            }
+        }
+        return people;
+    }
+
+    // 315 o(n^2)
+    public static List<Integer> countSmaller(int[] nums) {
+        List<Integer> integers = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            int count = 0;
+            for (int j = i; j < nums.length; j++) {
+                if (i != 0 && nums[i] == nums[i - 1]) {
+                    count = integers.get(i - 1);
+                    break;
+                } else if (nums[i] > nums[j]) {
+                    count++;
+                }
+            }
+            integers.add(count);
+        }
+        return integers;
+    }
 }
