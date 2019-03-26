@@ -73,4 +73,25 @@ public class TestSolution {
         int[] nums={0,1,2,4};
         Assert.assertEquals(3,Solution.missingNumber(nums));
     }
+
+    @Test
+    public void testFindContentChildrenfindContentChildren(){
+        int[] g={1,2,3};
+        int[] s={1,1};
+        Assert.assertEquals(1,Solution.findContentChildren(g,s));
+    }
+
+    @Test
+    public void testEraseOverlapIntervals(){
+        Interval interval = new Interval(1,2);
+        Interval interval1 = new Interval(2,3);
+        Interval[] intervals={interval,interval1,interval};
+        Assert.assertEquals(1,Solution.eraseOverlapIntervals(intervals));
+    }
+
+    @Test
+    public void testFindMinArrowShots() {
+        int[][] points = {{10,16},{2,8},{1,6},{7,12}};
+        Assert.assertEquals(2,Solution.findMinArrowShots(points));
+    }
 }

@@ -195,4 +195,50 @@ public class Solution {
         }
         return ret;
     }
+
+    // 455
+    public static int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int gi = 0, si = 0;
+        while (gi < g.length && si < s.length) {
+            if (g[gi] <= s[si]) {
+                gi++;
+            }
+            si++;
+        }
+        return gi;
+    }
+
+    //435
+    public static int eraseOverlapIntervals(Interval[] intervals) {
+        if (intervals.length == 0) {
+            return 0;
+        }
+        Arrays.sort(intervals, Comparator.comparingInt(o -> o.end));
+        int count = 1;
+        for (int i = 1, j = 0; i < intervals.length; i++) {
+            if (intervals[j].end <= intervals[i].start) {
+                count++;
+                j = i;
+            }
+        }
+        return intervals.length - count;
+    }
+
+    // 452
+    public static int findMinArrowShots(int[][] points) {
+        if (points.length == 0) {
+            return 0;
+        }
+        Arrays.sort(points, Comparator.comparingInt(o -> o[1]));
+        int count = 1;
+        for (int i = 1, j = 0; i < points.length; i++) {
+            if (points[j][1] < points[i][0]) {
+                count++;
+                j = i;
+            }
+        }
+        return count;
+    }
 }
