@@ -106,9 +106,16 @@ public class TestSolution {
 
     @Test
     public void testCountSmaller() {
-        int[] nums={5,2,6,1};
-        List<Integer> integers = Arrays.asList(2,1,1,0);
+        int[] nums = {5, 2, 6, 1};
+        List<Integer> integers = Arrays.asList(2, 1, 1, 0);
 //        Assert.assertThat(Solution.countSmaller(nums), CoreMatchers.is(integers));
-        Assert.assertEquals(integers,Solution.countSmaller(nums));
+        Assert.assertEquals(integers, Solution.countSmaller(nums));
+    }
+
+    @Test
+    public void testCanPlaceFlowers() {
+        int[] nums={1,0,0,0,1};
+        int n=1;
+        Assert.assertEquals(true,Solution.canPlaceFlowers(nums,n));
     }
 }

@@ -275,4 +275,34 @@ public class Solution {
         }
         return integers;
     }
+
+    // 605
+    public static boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int count = 0;
+        for (int i = 0; i < flowerbed.length; i++) {
+            if (flowerbed[i] == 0) {
+                int pre = i == 0 ? 0 : flowerbed[i - 1];
+                int next = i == flowerbed.length - 1 ? 0 : flowerbed[i + 1];
+                if (pre == 0 && next == 0) {
+                    count++;
+                    i++;
+                } else if(next==1) {
+                    i++;
+                }
+            }
+        }
+        return count>=n;
+    }
+
+    // 392
+    public static boolean isSubsequence(String s, String t) {
+        int index = -1;
+        for (char c : s.toCharArray()) {
+            index = t.indexOf(c, index + 1);
+            if (index == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
