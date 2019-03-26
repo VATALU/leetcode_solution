@@ -118,4 +118,11 @@ public class TestSolution {
         int n=1;
         Assert.assertEquals(true,Solution.canPlaceFlowers(nums,n));
     }
+
+    @Test
+    public void testRob(){
+        int[] nums={1,4,3,1};
+        int n=5;
+        Assert.assertEquals(n,Solution.rob(nums));
+    }
 }
