@@ -1,7 +1,6 @@
 package org.vatalu.easy;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 public class Solution {
 
@@ -337,4 +336,34 @@ public class Solution {
         return pre1;
     }
 
+    //413
+    public static int numberOfArithmeticSlices(int[] A) {
+        if(A==null || A.length==0) {
+            return 0;
+        }
+        int n=A.length;
+        int[] dp=new int[n];
+        for(int i=2;i<n;i++){
+            if(A[i-1]-A[i-2]==A[i]-A[i-1]) {
+                dp[i]=dp[i-1]+1;
+            }
+        }
+        int total =0;
+        for(int cnt:dp) {
+            total+=cnt;
+        }
+        return total;
+    }
+
+    //343
+    public static int integerBreak(int n) {
+        int[] dp = new int[n + 1];
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            for (int j = 1; j <= i - 1; j++) {
+                dp[i] = Math.max(dp[i], Math.max(j * dp[i - j], j * (i - j)));
+            }
+        }
+        return dp[n];
+    }
 }

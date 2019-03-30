@@ -125,4 +125,17 @@ public class TestSolution {
         int n=5;
         Assert.assertEquals(n,Solution.rob(nums));
     }
+
+    @Test
+    public void testNumberOfArithmeticSlices(){
+        int[] nums={1,2,3,4};
+        Assert.assertEquals(3,Solution.numberOfArithmeticSlices(nums));
+    }
+
+    @Test
+    public void testIntegerBreak(){
+        int n = 10;
+        int result=36;
+        Assert.assertEquals(result,Solution.integerBreak(n));
+    }
 }
