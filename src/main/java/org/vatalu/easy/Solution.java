@@ -394,8 +394,8 @@ public class Solution {
         for (int i = 1; i < num; i++) {
             if (nums[i] - nums[i - 1] == 1) {
                 dp[i] = dp[i - 1] + 1;
-            } else if(nums[i]==nums[i-1]){
-                dp[i]=dp[i-1];
+            } else if (nums[i] == nums[i - 1]) {
+                dp[i] = dp[i - 1];
             } else {
                 dp[i] = 1;
             }
@@ -407,5 +407,73 @@ public class Solution {
             }
         }
         return largest;
+    }
+
+    //104
+    public static int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        Queue<TreeNode> queue = new ArrayDeque<TreeNode>() {{
+            this.add(root);
+        }};
+        int height = 0;
+        while (!queue.isEmpty()) {
+            height++;
+            int currentSize = queue.size();
+            int count = 0;
+            while (count < currentSize) {
+                count++;
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+            }
+        }
+        return height;
+    }
+
+    //543
+    public static int diameterOfBinaryTree(TreeNode root) {
+        if (root == null)
+            return 0;
+        int max = 0;
+        Queue<TreeNode> queue = new ArrayDeque<TreeNode>() {{
+            this.add(root);
+        }};
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            int cur = maxDepth(node.left) + maxDepth(node.right);
+            max = Math.max(cur, max);
+            if (node.left != null)
+                queue.add(node.left);
+            if (node.right != null)
+                queue.add(node.right);
+        }
+        return max;
+    }
+
+    // 110
+    public static boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        Queue<TreeNode> queue = new ArrayDeque<TreeNode>() {{
+            this.add(root);
+        }};
+        while (!queue.isEmpty()) {
+            TreeNode treeNode = queue.poll();
+            if (Math.abs(maxDepth(treeNode.left) - maxDepth(treeNode.right)) >= 2) {
+                return false;
+            }
+            if (treeNode.left != null)
+                queue.add(treeNode.left);
+            if (treeNode.right != null)
+                queue.add(treeNode.right);
+        }
+        return true;
     }
 }

@@ -145,4 +145,5 @@ public class TestSolution {
         int reuslt =4;
         Assert.assertEquals(reuslt,Solution.longestConsecutive(nums));
     }
+
 }
