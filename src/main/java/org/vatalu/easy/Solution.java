@@ -285,12 +285,12 @@ public class Solution {
                 if (pre == 0 && next == 0) {
                     count++;
                     i++;
-                } else if(next==1) {
+                } else if (next == 1) {
                     i++;
                 }
             }
         }
-        return count>=n;
+        return count >= n;
     }
 
     // 392
@@ -307,50 +307,50 @@ public class Solution {
 
     //198
     public static int rob(int[] nums) {
-        int pre1=0,pre2=0;
-        for(int i=0;i<nums.length;i++) {
-            int cur = Math.max(pre2+nums[i],pre1);
-            pre2=pre1;
-            pre1=cur;
+        int pre1 = 0, pre2 = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int cur = Math.max(pre2 + nums[i], pre1);
+            pre2 = pre1;
+            pre1 = cur;
         }
         return pre1;
     }
 
     //213
     public static int rob2(int[] nums) {
-       if(Objects.isNull(nums)||nums.length==0){
-           return 0;
-       }
-       if(nums.length==1)
-           return nums[0];
-       return Math.max(rob(nums,0,nums.length-2),rob(nums,1,nums.length-1));
+        if (Objects.isNull(nums) || nums.length == 0) {
+            return 0;
+        }
+        if (nums.length == 1)
+            return nums[0];
+        return Math.max(rob(nums, 0, nums.length - 2), rob(nums, 1, nums.length - 1));
     }
 
-    private static int rob(int[] nums,int first,int last) {
-        int pre1=0,pre2=0;
-        for(int i=first;i<=last;i++) {
-            int cur = Math.max(pre2+nums[i],pre1);
-            pre2=pre1;
-            pre1=cur;
+    private static int rob(int[] nums, int first, int last) {
+        int pre1 = 0, pre2 = 0;
+        for (int i = first; i <= last; i++) {
+            int cur = Math.max(pre2 + nums[i], pre1);
+            pre2 = pre1;
+            pre1 = cur;
         }
         return pre1;
     }
 
     //413
     public static int numberOfArithmeticSlices(int[] A) {
-        if(A==null || A.length==0) {
+        if (A == null || A.length == 0) {
             return 0;
         }
-        int n=A.length;
-        int[] dp=new int[n];
-        for(int i=2;i<n;i++){
-            if(A[i-1]-A[i-2]==A[i]-A[i-1]) {
-                dp[i]=dp[i-1]+1;
+        int n = A.length;
+        int[] dp = new int[n];
+        for (int i = 2; i < n; i++) {
+            if (A[i - 1] - A[i - 2] == A[i] - A[i - 1]) {
+                dp[i] = dp[i - 1] + 1;
             }
         }
-        int total =0;
-        for(int cnt:dp) {
-            total+=cnt;
+        int total = 0;
+        for (int cnt : dp) {
+            total += cnt;
         }
         return total;
     }
@@ -380,5 +380,32 @@ public class Solution {
             }
         }
         return longest;
+    }
+
+    //128
+    public static int longestConsecutive(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        Arrays.sort(nums);
+        int num = nums.length;
+        int[] dp = new int[num];
+        dp[0] = 1;
+        for (int i = 1; i < num; i++) {
+            if (nums[i] - nums[i - 1] == 1) {
+                dp[i] = dp[i - 1] + 1;
+            } else if(nums[i]==nums[i-1]){
+                dp[i]=dp[i-1];
+            } else {
+                dp[i] = 1;
+            }
+        }
+        int largest = 1;
+        for (int i = 0; i < num; i++) {
+            if (dp[i] > largest) {
+                largest = dp[i];
+            }
+        }
+        return largest;
     }
 }
