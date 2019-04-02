@@ -476,4 +476,46 @@ public class Solution {
         }
         return true;
     }
+
+    //226
+    public static TreeNode invertTree(TreeNode root) {
+        if (root == null)
+            return null;
+        invert(root);
+        return root;
+    }
+
+    private static void invert(TreeNode node) {
+        TreeNode temp = node.right;
+        node.right = node.left;
+        node.left = temp;
+        if (node.right != null)
+            invert(node.right);
+        if (node.left != null)
+            invert(node.left);
+    }
+
+    //617
+    public static TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        if (t1 != null && t2 != null)
+            merge(t1, t2);
+        if (t1 == null && t2 != null)
+            return t2;
+        return t1;
+    }
+
+    private static void merge(TreeNode t1, TreeNode t2) {
+        t1.val += t2.val;
+        if (t2.left != null && t1.left != null)
+            merge(t1.left, t2.left);
+        if (t2.right != null && t1.right != null)
+            merge(t1.right, t2.right);
+        if (t1.left == null && t2.left != null) {
+            t1.left = t2.left;
+        }
+        if (t1.right == null && t2.right != null) {
+            t1.right = t2.right;
+        }
+
+    }
 }
